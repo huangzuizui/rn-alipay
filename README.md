@@ -19,8 +19,8 @@ iOS | Android
 ```java
 // file: android/settings.gradle
 ...
-include ':rn-alipay'  <- add
-project(':rn-alipay').projectDir = new File(settingsDir, '../node_modules/rn-alipay/android')  <- add
+include ':rn-alipay'  // <- add
+project(':rn-alipay').projectDir = new File(settingsDir, '../node_modules/rn-alipay/android')  // <- add
 ```
 
 ```java
