@@ -69,7 +69,7 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
 ```java
 // file: MainActivity.java
 	...
-import import com.alipay.RNAlipayPackage;//<- import package
+import com.alipay.RNAlipayPackage;//<- import package
 
 public class MainActivity extends ReactActivity {
 
