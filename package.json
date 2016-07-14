@@ -1,0 +1,26 @@
+{
+  "name": "rn-alipay",
+  "description": "react native支付宝移动支付模块",
+  "author": "huang zuizui",
+  "contributors": [
+    {
+      "name": "huang zuizui",
+      "email": "huangzuizui@gmail.com"
+    }
+  ],
+  "keywords": [
+    "alipay",
+    "rn-alipay",
+    "react-native-alipay",
+    "pay",
+    "taobao",
+    "alibaba",
+    "支付宝",
+    "淘宝",
+    "支付"
+  ],
+  "license": "MIT",
+  "main": "rn-alipay.js",
+  "nativePackage": true,
+  "version": "0.1.0"
+}
