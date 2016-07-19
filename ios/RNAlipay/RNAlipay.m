@@ -55,7 +55,9 @@ RCT_REMAP_METHOD(pay, options:(NSDictionary *)options
     order.outTradeNO = [options objectForKey:@"outTradeNO"]; //订单ID（由商家自行制定）
     order.subject = [options objectForKey:@"subject"]; //商品标题
     order.body = [options objectForKey:@"body"]; //商品描述
-    order.totalFee = [NSString stringWithFormat:@"%.2f", [options objectForKey:@"totalFee"]]; //商品价格
+    
+    float totalFee = [[options objectForKey:@"totalFee"] floatValue];
+    order.totalFee = [NSString stringWithFormat:@"%0.2f", totalFee]; //商品价格
     order.notifyURL =  [options objectForKey:@"notifyURL"]; //回调URL
     
     order.service = @"mobile.securitypay.pay";
@@ -81,13 +83,15 @@ RCT_REMAP_METHOD(pay, options:(NSDictionary *)options
     if (signedString != nil) {
         orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
                        orderSpec, signedString, @"RSA"];
-        //NSLog(@"zuizuiStr = %@", orderString);
+        NSLog(@"orderString = %@", orderString);
         
         //resolve(@"支付成功!");
         
         [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
             NSLog(@"reslut = %@",resultDic);
-            //resolve(@"支付成功!");
+            
+            NSLog(@"orderString = %@", @"支付成功啦啦啦啦！");
+            resolve(@"支付成功!");
         }];
         return;
     }

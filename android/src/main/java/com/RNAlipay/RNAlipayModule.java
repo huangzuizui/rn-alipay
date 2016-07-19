@@ -19,6 +19,7 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.bridge.Promise;
 
 import com.alipay.sdk.app.PayTask;
@@ -58,10 +59,16 @@ public class RNAlipayModule extends ReactContextBaseJavaModule {
         String outTradeNO = options.getString("outTradeNO");
         String subject = options.getString("subject");
         String body = options.getString("body");
-        String totalFee = options.getString("totalFee");
+
+        String totalFee;
+        if (options.getType("totalFee") == ReadableType.Number) {
+             totalFee = Double.toString(options.getDouble("totalFee"));
+        } else {
+             totalFee = options.getString("totalFee");
+        }
+
         String itBPay = options.getString("itBPay");
         String showURL = options.getString("showURL");
-
 
 		if (TextUtils.isEmpty(partner) || TextUtils.isEmpty(privateKey) || TextUtils.isEmpty(seller)) {
 
