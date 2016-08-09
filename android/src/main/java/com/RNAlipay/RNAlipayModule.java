@@ -59,6 +59,7 @@ public class RNAlipayModule extends ReactContextBaseJavaModule {
         String outTradeNO = options.getString("outTradeNO");
         String subject = options.getString("subject");
         String body = options.getString("body");
+        String notifyURL = options.getString("notifyURL");
 
         String totalFee;
         if (options.getType("totalFee") == ReadableType.Number) {
@@ -77,7 +78,7 @@ public class RNAlipayModule extends ReactContextBaseJavaModule {
 			return;
 		}
 
-		String orderInfo = getOrderInfo(partner, seller, outTradeNO, subject, body, totalFee, itBPay, showURL);
+		String orderInfo = getOrderInfo(partner, seller, outTradeNO, subject, body, totalFee, itBPay, showURL, notifyURL);
 
 		/**
 		 * 特别注意，这里的签名逻辑需要放在服务端，切勿将私钥泄露在代码中！
@@ -98,6 +99,8 @@ public class RNAlipayModule extends ReactContextBaseJavaModule {
          */
         final String payInfo = orderInfo + "&sign=\"" + sign + "\"&" + getSignType();
 
+        System.out.println(payInfo);
+
 		PayTask alipay = new PayTask(mMainActivity);
 		String result = alipay.pay(payInfo);
 		//cb.invoke(result);
@@ -115,7 +118,8 @@ public class RNAlipayModule extends ReactContextBaseJavaModule {
 	    String body,
 	    String totalFee,
 	    String itBPay,
-	    String showURL
+	    String showURL,
+	    String notifyURL
 	) {
 
 		// 签约合作者身份ID
@@ -160,6 +164,8 @@ public class RNAlipayModule extends ReactContextBaseJavaModule {
 
 		// 调用银行卡支付，需配置此参数，参与签名， 固定值 （需要签约《无线银行卡快捷支付》才能使用）
 		// orderInfo += "&paymethod=\"expressGateway\"";
+
+		orderInfo += "&notify_url=\"" + notifyURL + "\"";
 
 		return orderInfo;
 	}
