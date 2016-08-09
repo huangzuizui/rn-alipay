@@ -104,7 +104,7 @@ public class RNAlipayModule extends ReactContextBaseJavaModule {
 		PayTask alipay = new PayTask(mMainActivity);
 		String result = alipay.pay(payInfo);
 		//cb.invoke(result);
-		promise.resolve(payInfo);
+		promise.resolve(result);
     }
   	/**
 	 * create the order info. 创建订单信息
