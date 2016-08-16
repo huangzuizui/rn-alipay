@@ -36,13 +36,11 @@ public class RNAlipayModule extends ReactContextBaseJavaModule {
 	//private static final int SDK_PAY_FLAG = 1;
 	//private static final int SDK_CHECK_FLAG = 2;
 
-	private final Activity mMainActivity;
 	private final ReactApplicationContext mReactContext;
 
-	public RNAlipayModule(ReactApplicationContext reactContext, Activity mainActivity) {
+	public RNAlipayModule(ReactApplicationContext reactContext) {
 		super(reactContext);
 		mReactContext = reactContext;
-		mMainActivity = mainActivity;
   	}
   	
 	@Override
@@ -101,7 +99,7 @@ public class RNAlipayModule extends ReactContextBaseJavaModule {
 
         System.out.println(payInfo);
 
-		PayTask alipay = new PayTask(mMainActivity);
+		PayTask alipay = new PayTask(getCurrentActivity());
 		String result = alipay.pay(payInfo);
 		//cb.invoke(result);
 		promise.resolve(result);

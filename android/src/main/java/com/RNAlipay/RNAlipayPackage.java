@@ -14,16 +14,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class RNAlipayPackage implements ReactPackage {
-  private final Activity mMainActivity;
   private RNAlipayModule mModuleInstance;
-
-  public RNAlipayPackage(Activity mainActivity) {
-    this.mMainActivity = mainActivity;
-  }
 
   @Override
   public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-    mModuleInstance = new RNAlipayModule(reactContext, mMainActivity);
+    mModuleInstance = new RNAlipayModule(reactContext);
 
     return Arrays.<NativeModule>asList(mModuleInstance);
   }
