@@ -84,6 +84,25 @@ public class MainActivity extends ReactActivity {
 ...
 }
 ```
+* 对于 react-native 0.29.0及以上版本
+```java
+// file: MainApplication.java
+	...
+import com.alipay.RNAlipayPackage;//<- import package
+
+public class MainApplication extends Application implements ReactApplication {
+
+   ...
+    @Override
+    protected List<ReactPackage> getPackages() {
+        return Arrays.<ReactPackage>asList(
+            new MainReactPackage(), //<- Add comma
+            new RNAlipayPackage() //<- Add package
+        );
+    }
+...
+}
+```
 * 安卓部分实现参考https://github.com/szq4119/react-native-alipay
 
 ##使用说明
