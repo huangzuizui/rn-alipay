@@ -66,6 +66,8 @@ RCT_REMAP_METHOD(pay, options:(NSDictionary *)options
 
     order.itBPay = [options objectForKey:@"itBPay"];
     order.showURL = [options objectForKey:@"showURL"];
+    // additional params for global alipay
+    order.outContext = [options objectForKey:@"outContext"];
 
     //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
     NSString *appScheme = [options objectForKey:@"appSchemeIOS"];
