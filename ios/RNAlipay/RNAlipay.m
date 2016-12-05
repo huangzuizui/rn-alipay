@@ -93,7 +93,7 @@ RCT_REMAP_METHOD(pay, options:(NSDictionary *)options
             NSLog(@"reslut = %@",resultDic);
 
             NSLog(@"orderString = %@", @"支付成功啦啦啦啦！");
-            resolve(@"支付成功!");
+            resolve(resultDic);
         }];
         return;
     }
