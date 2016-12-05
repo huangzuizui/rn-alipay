@@ -42,7 +42,7 @@ public class RNAlipayModule extends ReactContextBaseJavaModule {
 		super(reactContext);
 		mReactContext = reactContext;
   	}
-  	
+
 	@Override
   	public String getName() {
     	return "RNAlipay";
@@ -106,7 +106,7 @@ public class RNAlipayModule extends ReactContextBaseJavaModule {
     }
   	/**
 	 * create the order info. 创建订单信息
-	 * 
+	 *
 	 */
 	public String getOrderInfo(
 	    String partner,
@@ -170,7 +170,7 @@ public class RNAlipayModule extends ReactContextBaseJavaModule {
 
 	/**
 	 * sign the order info. 对订单信息进行签名
-	 * 
+	 *
 	 * @param content
 	 *            待签名订单信息
 	 */
@@ -179,7 +179,7 @@ public class RNAlipayModule extends ReactContextBaseJavaModule {
 	}
 	/**
 	 * get the sign type we use. 获取签名方式
-	 * 
+	 *
 	 */
 	public String getSignType() {
 		return "sign_type=\"RSA\"";
