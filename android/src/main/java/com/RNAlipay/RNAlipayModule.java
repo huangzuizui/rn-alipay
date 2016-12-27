@@ -42,7 +42,7 @@ public class RNAlipayModule extends ReactContextBaseJavaModule {
 		super(reactContext);
 		mReactContext = reactContext;
   	}
-  	
+
 	@Override
   	public String getName() {
     	return "RNAlipay";
@@ -69,6 +69,11 @@ public class RNAlipayModule extends ReactContextBaseJavaModule {
         String itBPay = options.getString("itBPay");
         String showURL = options.getString("showURL");
 
+				// additional params for global alipay
+				ReadableMap outContext = options.getMap("outContext");
+				String currency = outContext.getString("currency");
+				String forex_biz = outContext.getString("forex_biz");
+
 		if (TextUtils.isEmpty(partner) || TextUtils.isEmpty(privateKey) || TextUtils.isEmpty(seller)) {
 
 		    promise.reject("需要配置PARTNER | RSA_PRIVATE| SELLER");
@@ -76,7 +81,7 @@ public class RNAlipayModule extends ReactContextBaseJavaModule {
 			return;
 		}
 
-		String orderInfo = getOrderInfo(partner, seller, outTradeNO, subject, body, totalFee, itBPay, showURL, notifyURL);
+		String orderInfo = getOrderInfo(partner, seller, outTradeNO, subject, body, totalFee, itBPay, showURL, notifyURL, currency, forex_biz);
 
 		/**
 		 * 特别注意，这里的签名逻辑需要放在服务端，切勿将私钥泄露在代码中！
@@ -106,7 +111,7 @@ public class RNAlipayModule extends ReactContextBaseJavaModule {
     }
   	/**
 	 * create the order info. 创建订单信息
-	 * 
+	 *
 	 */
 	public String getOrderInfo(
 	    String partner,
@@ -165,12 +170,17 @@ public class RNAlipayModule extends ReactContextBaseJavaModule {
 
 		orderInfo += "&notify_url=\"" + notifyURL + "\"";
 
+		// additional params for global alipay
+		orderInfo += "&currency=\"" + currency + "\"";
+
+		orderInfo += "&forex_biz=\"" + forex_biz + "\"";
+
 		return orderInfo;
 	}
 
 	/**
 	 * sign the order info. 对订单信息进行签名
-	 * 
+	 *
 	 * @param content
 	 *            待签名订单信息
 	 */
@@ -179,7 +189,7 @@ public class RNAlipayModule extends ReactContextBaseJavaModule {
 	}
 	/**
 	 * get the sign type we use. 获取签名方式
-	 * 
+	 *
 	 */
 	public String getSignType() {
 		return "sign_type=\"RSA\"";
